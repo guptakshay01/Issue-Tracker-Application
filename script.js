@@ -1,5 +1,6 @@
 document.getElementById('issueInputForm').addEventListener('submit', saveIssue);
 
+/* save issue to local storage */
 function saveIssue(e){
 	var issueId = chance.guid();
 	var issueStatus = 'Open';
@@ -32,6 +33,36 @@ function saveIssue(e){
 	e.preventDefault();
 }
 
+/* changing the status of issue */
+setStatusClosed(id){
+	var issues = JSON.parse(localStorage.getItem('issues'));
+
+	for(var i = 0; i < issues.length; i++){
+		if(issues[i].id === id){
+			issues[i].stauts = 'Closed';
+		}
+	}
+
+	localStorage.setItem('issues', JSON.stringify(issues));
+
+	displayIssues();
+}
+
+/* deleting the issue */
+deleteIssue(id){
+	var issues = JSON.parse(localStorage.getItem('issues'));
+
+	for(var i = 0; i < issues.length; i++){
+		if(issues[i].id === id){
+			issues.splice(i, 1);
+		}
+	}
+
+	localStorage.setItem('issues', JSON.stringify(issues));
+
+	displayIssues();
+}
+
 /* display issue */
 function displayIssues() {
 	var issues = JSON.parse(localStorage.getItem('issues'));
@@ -49,12 +80,12 @@ function displayIssues() {
 
 		issueList.innerHTML += '<div class="well">' +
 							   '<h6>Issue ID: '+ id +'</h6>' +
-							   '<p><span class="label label-info">'+ status +'</span></p>' +
-							   '<h3>'+ description +'</h3>' +
-							   '<p><span class="glyphicon glyphicon-time">'+ severity +'</span></p>' +
-							   '<p><span class="glyphicon glyphicon-user">'+ assignedTo +'</span></p>' +
-							   '<a href="#" onClick="setStatusClosed(\''+ id +'\')" class="btn btn-warning">Close</a>' +
-							   '<a href="#" onClick="deleteIssue(\''+ id +'\')" class="btn btn-primary">Delete</a>' +
+							   '<p> <span class="label label-info"> '+ status +' </span> </p>' +
+							   '<h3> '+ description +' </h3>' +
+							   '<p> <span class="glyphicon glyphicon-time"> '+ severity +' </span> </p>' +
+							   '<p> <span class="glyphicon glyphicon-user"> '+ assignedTo +' </span> </p>' +
+							   '<a href="#" onClick="setStatusClosed(\''+ id +'\')" class="btn btn-warning"> Close </a>' +
+							   '<a href="#" onClick="deleteIssue(\''+ id +'\')" class="btn btn-Danger"> Delete </a>' +
 							   '</div>'
 	}
 }
