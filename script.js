@@ -12,7 +12,7 @@ function saveIssue(e){
 		description: issueDescription,
 		severity: issueSeverity,
 		assignedTo: issueAssignedTo,
-		staus: issueStatus
+		status: issueStatus
 	}
 
 	if(localStorage.getItem('issues') == null){
@@ -40,6 +40,7 @@ function displayIssues() {
 	issueList.innerHTML = '';
 
 	for(var i = 0; i < issues.length; i++){
+
 		var id = issues[i].id;
 		var description = issues[i].description;
 		var severity = issues[i].severity;
@@ -49,7 +50,7 @@ function displayIssues() {
 		issueList.innerHTML += '<div class="well">' +
 							   '<h6>Issue ID: '+ id +'</h6>' +
 							   '<p><span class="label label-info">'+ status +'</span></p>' +
-							   '<h3>'+ description +'</h3>'
+							   '<h3>'+ description +'</h3>' +
 							   '<p><span class="glyphicon glyphicon-time">'+ severity +'</span></p>' +
 							   '<p><span class="glyphicon glyphicon-user">'+ assignedTo +'</span></p>' +
 							   '<a href="#" onClick="setStatusClosed(\''+ id +'\')" class="btn btn-warning">Close</a>' +
