@@ -34,7 +34,7 @@ function saveIssue(e){
 }
 
 /* changing the status of issue */
-setStatusClosed(id){
+function setStatusClosed(id){
 	var issues = JSON.parse(localStorage.getItem('issues'));
 
 	for(var i = 0; i < issues.length; i++){
@@ -49,7 +49,7 @@ setStatusClosed(id){
 }
 
 /* deleting the issue */
-deleteIssue(id){
+function deleteIssue(id){
 	var issues = JSON.parse(localStorage.getItem('issues'));
 
 	for(var i = 0; i < issues.length; i++){
@@ -84,8 +84,8 @@ function displayIssues() {
 							   '<h3> '+ description +' </h3>' +
 							   '<p> <span class="glyphicon glyphicon-time"> '+ severity +' </span> </p>' +
 							   '<p> <span class="glyphicon glyphicon-user"> '+ assignedTo +' </span> </p>' +
-							   '<a href="#" onClick="setStatusClosed(\''+ id +'\')" class="btn btn-warning"> Close </a>' +
-							   '<a href="#" onClick="deleteIssue(\''+ id +'\')" class="btn btn-Danger"> Delete </a>' +
+							   '<a href="#" onClick="setStatusClosed(\''+ id +'\')" class="btn btn-warning"> Close </a> ' +
+							   '<a href="#" onClick="deleteIssue(\''+ id +'\')" class="btn btn-danger"> Delete </a>' +
 							   '</div>'
 	}
 }
